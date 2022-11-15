@@ -131,6 +131,7 @@ section.movie {
   @extend .row;
   margin-bottom: 1.5rem;
   padding-bottom: 1em;
+  padding-left: 2em;
   border-bottom: 1px dotted $border-color;
 
   &:nth-last-child(1) {
@@ -174,6 +175,7 @@ section.movie {
 
 section.movie-details {
   @extend .row;
+  padding-left: 2em;
 
   .image {
     @extend .col-md-3, .text-start;
