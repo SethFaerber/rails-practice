@@ -1,22 +1,17 @@
-<% @movies. each do |movie| puts "Class in View #{movie.released_on.class}" end %>
-<ul>
-  <% @movies.each do |movie| %>
-    <li><strong><%= movie.title %></strong>
-      (<%= movie.rating %>):
-      <%= total_gross(movie) %>
-      <%= puts "Class in View in HTML tag #{movie.released_on.class}" %>
-    </li>
-    <p>
-      <%= truncate(movie.description, length: 40, separator:' ') %>
-    </p>
-    <p>
-      <%
-      # TODO: Why doesn't the .to_fs method work here, but it works in Rails Console?
-      # Why is movie.released_on.class String here, but Date in Rails Console? When is it getting converted and why?
-      # Answer: it seems that the View does some kind of coercive typing by possibly calling .to_s on its return.
-      # Answer: WRONG! The server just needed to be restarted).
-      %>
-      <%= "Released on #{movie.released_on.to_fs(:long_ordinal)}" %>
-    </p>
-  <% end %>
-</ul>
+<% @movies.each do |movie| %>
+  <section class="movie">
+    <div class="summary">
+      <h2>
+<!--        This line does the same thing as the line below it, only more verbose-->
+        <%#= link_to(movie.title, movie_path(movie)) %>
+        <%= link_to movie.title, movie %>
+      </h2>
+      <h3>
+        <%= total_gross(movie) %>
+      </h3>
+      <p>
+        <%= truncate(movie.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+<% end %>

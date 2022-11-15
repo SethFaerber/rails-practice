@@ -8,4 +8,7 @@ module MoviesHelper
     end
   end
 
+  def year_of(movie)
+    movie.released_on.year
+  end
 end
