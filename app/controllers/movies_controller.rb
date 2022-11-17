@@ -19,7 +19,14 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to @movie
+
+      # These two lines are the same as the third. How does the third know that notice: is the same
+      # as setting the notice property on the flash hash?
+      # flash[:notice] = "Movie successfully updated!"
+      # redirect_to @movie
+
+      redirect_to @movie, notice: "Movie successfully updated!"
+
     else
       render :edit, status: :unprocessable_entity
     end
@@ -28,7 +35,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     if @movie.save
-      redirect_to @movie
+      redirect_to @movie, notice: "Movie successfully added!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +44,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to movies_url, status: :see_other
+    redirect_to movies_url, status: :see_other, alert: "Movie has been deleted."
   end
 
   private
