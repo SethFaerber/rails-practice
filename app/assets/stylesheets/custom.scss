@@ -521,6 +521,21 @@ form:not([class="button_to"]) {
     select {
       background: $error-background-color !important;
     }
+    -webkit-animation: pulsate .5s ease-out;
+    -webkit-animation-iteration-count: 3;
+    opacity: 1.0;
+  }
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.5;
   }
 }
 
