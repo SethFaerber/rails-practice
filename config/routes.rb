@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   resources :movies
 
+  resources :nineties
+
 end
