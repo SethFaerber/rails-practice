@@ -9,7 +9,8 @@
   <%= f.text_area :description, rows: 7 %>
 
   <%= f.label :rating %>
-  <%= f.select :rating, Movie::RATINGS, prompt: "Pick one" %>
+  <% # DOM.element :property_address, Class::CONSTANT property: set_property %>
+  <%= f.select(:rating, Movie::RATINGS, prompt: "Pick one")%>
 
   <%= f.label :released_on %>
   <%#= f.date_select :released_on, {}, {class: "date"} %>

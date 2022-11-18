@@ -16,12 +16,24 @@ class Movie < ApplicationRecord
   end
 
   def self.from_nineties
-    # where("released_on BETWEEN ? AND ?", "1990-01-01", "1999-12-31")
-    # where("released_on BETWEEN '1990-01-01' AND '1999-12-31'")
-    where(released_on: "1990-01-01".."1999-12-31")
+    # puts where("released_on BETWEEN ? AND ?", "1991-01-01", "1999-12-31")
+    puts where("released_on BETWEEN '1990-01-01' AND '1999-12-31'")
+    puts where(released_on: "1990-01-01".."1999-12-31")
+
+    # TODO: What is going on with these two syntaxes?
+    # puts where(:created_at => @selected_date.beginning_of_day..@selected_date.end_of_day)
+    # puts where('created_at BETWEEN ? AND ?', @selected_date.beginning_of_day, @selected_date.end_of_day)
+
   end
 
   def flop?
     total_gross.blank? || total_gross < 225000000
   end
 end
+
+
+hash_on_fire = Hash(:evacuee => "Seth")
+safe_new_hash = Hash(:evacuee_on_fire => "Melvin")
+safe_new_hash[:evacuee_on_fire] = hash_on_fire.delete :evacuee
+safe_new_hash
+#=> {:evacuee_on_fire=>"Seth"}

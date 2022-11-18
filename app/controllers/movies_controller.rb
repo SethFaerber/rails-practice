@@ -22,8 +22,9 @@ class MoviesController < ApplicationController
 
       # These two lines are the same as the third. How does the third know that notice: is the same
       # as setting the notice property on the flash hash?
-      # flash[:notice] = "Movie successfully updated!"
-      # redirect_to @movie
+      #
+      flash[:notice] = "Movie successfully updated!"
+      redirect_to @movie
 
       redirect_to @movie, notice: "Movie successfully updated!"
 
