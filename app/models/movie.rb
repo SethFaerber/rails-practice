@@ -1,6 +1,13 @@
 class Movie < ApplicationRecord
 
-  RATINGS = %w(G PG PG-13 R NC-17)
+  has_many :reviews, dependent: :destroy
+
+  # This says 'has_many' is a method, and it is being passed a parameter of the symbol 'reviews'
+  # has_many :reviews
+  # This says 'has_many' is a key and the value is 'reviews'
+  # has_many: reviews
+
+  RATINGS = %w(G PG PG-13 R)
 
   validates :rating, inclusion: { in: RATINGS }
   validates :title, :released_on, :duration, presence: true
@@ -17,8 +24,8 @@ class Movie < ApplicationRecord
 
   def self.from_nineties
     # puts where("released_on BETWEEN ? AND ?", "1991-01-01", "1999-12-31")
-    puts where("released_on BETWEEN '1990-01-01' AND '1999-12-31'")
-    puts where(released_on: "1990-01-01".."1999-12-31")
+    # puts where("released_on BETWEEN '1990-01-01' AND '1999-12-31'")
+    where(released_on: "1990-01-01".."1999-12-31")
 
     # TODO: What is going on with these two syntaxes?
     # puts where(:created_at => @selected_date.beginning_of_day..@selected_date.end_of_day)
