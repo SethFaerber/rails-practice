@@ -2,7 +2,7 @@
 
 <%= form_with(model: [@movie, @review]) do |f| %>
 
-  <%= render "shared/errors", object: @movie %>
+  <%= render "shared/errors", object: @review %>
 
   <%= f.label :name %>
   <%= f.text_field :name, autofocus: true %>
