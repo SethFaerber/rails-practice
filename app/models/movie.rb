@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
 
   # This says 'has_many' is a method, and it is being passed a parameter of the symbol 'reviews'
   # has_many :reviews
+
   # This says 'has_many' is a key and the value is 'reviews'
   # has_many: reviews
 
