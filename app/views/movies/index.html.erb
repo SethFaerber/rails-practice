@@ -13,8 +13,6 @@
         <%= truncate(movie.description, length: 150, separator: ' ') %>
       </p>
 
-
-      <% puts movie.average_review %>
       <%= render 'shared/stars', percent: movie.average_review %>
 
     </div>

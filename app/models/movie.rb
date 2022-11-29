@@ -34,13 +34,14 @@ class Movie < ApplicationRecord
 
   end
 
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
+
   def average_review
     average = reviews.average(:stars)
-    if average
-      average * 20.0
-    else
-      0
-    end
+
+    average ? average * 20 : 0
   end
 
   def flop?
