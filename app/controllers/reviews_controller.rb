@@ -33,3 +33,15 @@ class ReviewsController < ApplicationController
     @movie = Movie.find(params[:movie_id])
   end
 end
+
+#
+# def instantiate
+#   "I've been instantiated."
+# end
+#
+# def run(method_name_or_symbol)
+#   method_name_or_symbol
+# end
+#
+# run instantiate
+# run :instantiate

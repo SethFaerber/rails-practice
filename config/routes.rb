@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :nineties
 
+  resource :session, only: [:new, :create, :destroy]
+
   get "signup" => "users#new"
 
 end
