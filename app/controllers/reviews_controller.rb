@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  before_action :require_signin
   before_action :set_movie
 
 
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.new(review_params)
-
+    @review.user = current_user
 
     if @review.save
       redirect_to movie_reviews_path(@movie), notice: "Thanks for your review!"
@@ -26,22 +26,10 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:name, :comment, :stars)
+    params.require(:review).permit(:comment, :stars)
   end
 
   def set_movie
     @movie = Movie.find(params[:movie_id])
   end
 end
-
-#
-# def instantiate
-#   "I've been instantiated."
-# end
-#
-# def run(method_name_or_symbol)
-#   method_name_or_symbol
-# end
-#
-# run instantiate
-# run :instantiate
