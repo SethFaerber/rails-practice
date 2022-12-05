@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :favorites
   resources :users
 
   root "movies#index"
 
   resources :movies do
     resources :reviews
+    resources :favorites, only: [:create, :destroy]
   end
 
   resources :nineties
