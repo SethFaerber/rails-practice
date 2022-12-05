@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # This says 'has_many' is a method, and it is being passed a parameter of the symbol 'reviews'
   # has_many :reviews
