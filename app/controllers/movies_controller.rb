@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   before_action :require_signin, except: [:index, :show]
   before_action :require_admin, except: [:index, :show]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
   def index
     case params[:filter]
@@ -17,7 +18,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
     @fans = @movie.fans
     @genres = @movie.genres.order(:name)
 
@@ -27,7 +27,6 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    @movie = Movie.find(params[:id])
   end
 
   def new
@@ -35,7 +34,6 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
 
       # These two lines are the same as the third. How does the third know that notice: is the same
@@ -61,12 +59,15 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie = Movie.find(params[:id])
     @movie.destroy
     redirect_to movies_url, status: :see_other, alert: "Movie has been deleted."
   end
 
   private
+
+  def set_movie
+    @movie = Movie.find_by!(slug: params[:id])
+  end
 
   def movie_params
     params.require(:movie).
