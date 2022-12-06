@@ -8,6 +8,18 @@
       <li>
         <%= link_to("90's Movies", nineties_path) %>
       </li>
+      <li>
+        <%= link_to "Released", movies_path %>
+      </li>
+      <li>
+        <%= link_to 'Upcoming', filtered_movies_path(:upcoming) %>
+      </li>
+      <li>
+        <%= link_to 'Recent', filtered_movies_path(:recent) %>
+      </li>
+      <li>
+        <%= link_to "90's Faves", filtered_movies_path(:nineties) %>
+      </li>
     </ul>
     <ul class="right">
       <% if current_user %>

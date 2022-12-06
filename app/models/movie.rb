@@ -24,9 +24,11 @@ class Movie < ApplicationRecord
     message: "must be a JPG or PNG image"
   }
 
+  # Lambdas
   scope :released, -> { where("released_on < ?", Time.now).order("released_on desc") }
   scope :upcoming, -> { where("released_on > ?", Time.now).order("released_on asc") }
   scope :recent, ->(max=5) { released.limit(max) }
+  scope :nineties, -> { where(released_on: "1990-01-01".."1999-12-31") }
 
   def self.from_nineties
     # puts where("released_on BETWEEN ? AND ?", "1991-01-01", "1999-12-31")
